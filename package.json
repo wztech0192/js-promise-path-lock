@@ -1,11 +1,8 @@
 {
   "name": "js-promise-path-lock",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Block the promise chains from executing if the end path is different from the start path. Good for single page application.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/weijie0192/js_promise_path_lock.git"
@@ -15,5 +12,16 @@
   "bugs": {
     "url": "https://github.com/weijie0192/js_promise_path_lock/issues"
   },
-  "homepage": "https://github.com/weijie0192/js_promise_path_lock#readme"
+  "scripts": {
+    "prepublish": "babel src --out-dir lib"
+  },
+  "homepage": "https://github.com/weijie0192/js_promise_path_lock#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "babel-plugin-syntax-class-properties": "^6.13.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1"
+  }
 }
