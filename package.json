@@ -1,5 +1,5 @@
 {
-  "name": "js_promise_path_lock",
+  "name": "js-promise-path-lock",
   "version": "1.0.0",
   "description": "Block the promise chains from executing if the end path is different from the start path. Good for single page application.",
   "main": "index.js",
