@@ -7,10 +7,7 @@ export default class PromisePathLock {
     static lock = (promise) => new PromisePathLock(promise);
 
     generateCallback = (callback) => (res) => {
-        if (this.pathname !== window.location.pathname) {
-            console.debug(
-                `Path start in ${this.pathname}, but ended in ${window.location.pathname}`
-            );
+        if (!callback || this.pathname !== window.location.pathname) {
             return res;
         }
         return callback(res);
