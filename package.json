@@ -1,6 +1,6 @@
 {
   "name": "js-promise-path-lock",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Block the promise chains from executing if the end path is different from the start path. Good for single page application.",
   "main": "lib/index.js",
   "repository": {
@@ -23,5 +23,16 @@
     "babel-plugin-syntax-class-properties": "^6.13.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-preset-es2015": "^6.24.1"
-  }
+  },
+  "keywords": [
+    "promise",
+    "async",
+    "lock",
+    "path",
+    "promise-chain",
+    "chain",
+    "then",
+    "catch",
+    "finally"
+  ]
 }
