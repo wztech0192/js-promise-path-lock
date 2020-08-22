@@ -24,25 +24,29 @@ export default class PromisePathLock {
         this.path = path;
     }
 
-    static lock = (promise) => new PromisePathLock(promise);
+    static lock = promise => new PromisePathLock(promise);
 
-    generateCallback = (callback) => (res) => {
-        if (callback && PromisePathLock.PathUID.isEqual(this.path.id)) {
-            callback(res);
-            this.path.id = PromisePathLock.PathUID.generate();
-        }
+    generateCallback = callback => {
+        if (callback)
+            res => {
+                if (PromisePathLock.PathUID.isEqual(this.path.id)) {
+                    callback(res);
+                    this.path.id = PromisePathLock.PathUID.generate();
+                }
+            };
     };
 
     wrapIt = (funcName, ...arg) => new PromisePathLock(this.promise[funcName](...arg), this.path);
 
-    then = (onSuccess) => this.wrapIt("then", this.generateCallback(onSuccess));
+    then = (onSuccess, onFailed) =>
+        this.wrapIt("then", this.generateCallback(onSuccess), this.generateCallback(onFailed));
 
-    catch = (onError) => this.wrapIt("catch", this.generateCallback(onError));
-    finally = (onFinally) => this.wrapIt("finally", this.generateCallback(onFinally));
+    catch = onError => this.wrapIt("catch", this.generateCallback(onError));
+    finally = onFinally => this.wrapIt("finally", this.generateCallback(onFinally));
 
-    all = (arg) => this.wrapIt("all", arg);
-    allSettled = (arg) => this.wrapIt("allSettled", arg);
-    race = (arg) => this.wrapIt("race", arg);
-    resolve = (arg) => this.wrapIt("resolve", arg);
-    reject = (arg) => this.wrapIt("reject", arg);
+    all = arg => this.wrapIt("all", arg);
+    allSettled = arg => this.wrapIt("allSettled", arg);
+    race = arg => this.wrapIt("race", arg);
+    resolve = arg => this.wrapIt("resolve", arg);
+    reject = arg => this.wrapIt("reject", arg);
 }
